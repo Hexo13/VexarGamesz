@@ -3,6 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="icon" href="/vexar.svg" />
+        <script src="/uv/uv.bundle.js"></script>
+        <script src="/uv/uv.config.js"></script>
+        <script src="/baremux/index.js"></script>
+
+        <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/uv/sw.js");
+            });
+        }
+        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vexar</title>
     </head>
