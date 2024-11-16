@@ -52,7 +52,7 @@ import { RouterView } from "vue-router";
         <input type="text" id="urlInput" v-model="query" placeholder="Enter URL here">
         <button type="submit" id="searchButton">Search Text</button>
     </form>
-    <select id="switcher" v-model="transport", @change="changeTransport">
+    <select id="switcher" v-model="transport" @change="changeTransport">
         <option value="">--Please Choose an Option--</option>
         <option value="epoxy">Epoxy</option>
         <option value="bare">Bare</option>
