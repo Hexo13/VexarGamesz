@@ -37,7 +37,7 @@ import { RouterView } from "vue-router";
 
 <template>
     <iframe id="iframeWindow" class="iframeWindow"></iframe>
-    <form @submit.prevent="search">
+    <form @submit="search">
         <input type="text" id="urlInput" v-model="query" placeholder="Enter URL here">
         <button type="submit" id="searchButton">Search Text</button>
     </form>
