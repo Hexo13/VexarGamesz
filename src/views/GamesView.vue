@@ -1,5 +1,6 @@
 <script setup>
 import { RouterView } from "vue-router";
+import { ref } from 'vue'
 </script>
 
 <script>
@@ -30,7 +31,7 @@ import { RouterView } from "vue-router";
                 if (!await connection.getTransport()) {
                     await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
                 }
-                iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+                this.$refs.iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
             },
             async changeTransport() {
                 switch (this.transport) {
@@ -47,7 +48,7 @@ import { RouterView } from "vue-router";
 </script>
 
 <template>
-    <iframe id="iframeWindow" class="iframeWindow"></iframe>
+    <iframe id="iframeWindow" class="iframeWindow" ref="iframeWindow"></iframe>
     <form @submit.prevent="search">
         <input type="text" id="urlInput" v-model="query" placeholder="Enter URL here">
         <button type="submit" id="searchButton">Search Text</button>
