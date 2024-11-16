@@ -18,12 +18,15 @@ import { ref } from 'vue'
         },
         methods: {
             async search() {
+                console.log("search")
                 let url = this.query; // if no periods are detected in the input, search google instead
                 let searchUrl = "https://www.google.com/search?q=";
 
                 if (!url.includes(".")) {
                     url = searchUrl + encodeURIComponent(url);
+                    console.log("no .s")
                 } else {
+                    console.log(".s")
                     if (!url.startsWith("http://") && !url.startsWith("https://")) { // if no http or https is detected, add https automatically
                         url = "https://" + url;
                     }
@@ -32,8 +35,10 @@ import { ref } from 'vue'
                     await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
                 }
                 this.$refs.iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+                console.log("finished")
             },
             async changeTransport() {
+                console.log("switch");
                 switch (this.transport) {
                     case "epoxy":
                         await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
