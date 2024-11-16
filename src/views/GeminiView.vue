@@ -32,7 +32,7 @@ export default {
                 });
 
                 const result = await model.generateContent(
-                    prompt + "(The answer must be shorter than 25 words)",
+                    prompt,
                     this.safetySettings,
                 );
                 const response = await result.response;
