@@ -6,7 +6,8 @@ import { RouterView } from "vue-router";
     export default {
         data() {
             return {
-                query: ""
+                query: "",
+                transport: ""
             }
         },
         mounted() {
@@ -30,6 +31,16 @@ import { RouterView } from "vue-router";
                     await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
                 }
                 iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+            },
+            async changeTransport() {
+                switch (this.transport) {
+                    case "epoxy":
+                        await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+                        break;
+                    case "bare":
+                        await connection.setTransport("/baremod/index.mjs", [bareUrl]);
+                        break;
+                }
             }
         }
     }
@@ -37,8 +48,13 @@ import { RouterView } from "vue-router";
 
 <template>
     <iframe id="iframeWindow" class="iframeWindow"></iframe>
-    <form @submit="search">
+    <form @submit.prevent="search">
         <input type="text" id="urlInput" v-model="query" placeholder="Enter URL here">
         <button type="submit" id="searchButton">Search Text</button>
     </form>
+    <select id="switcher" v-model="transport", @change="changeTransport">
+        <option value="">--Please Choose an Option--</option>
+        <option value="epoxy">Epoxy</option>
+        <option value="bare">Bare</option>
+    </select>
 </template>
