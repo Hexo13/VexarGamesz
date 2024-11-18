@@ -13,13 +13,13 @@ import { fileURLToPath } from "url";
 const publicPath = fileURLToPath(new URL("./public/", import.meta.url));
 
 const bare = createBareServer("/bare/");
-const app = express();
+const appx = express();
 
-app.use(express.static(publicPath));
-app.use("/uv/", express.static(uvPath));
+appx.use(express.static(publicPath));
+appx.use("/uv/", express.static(uvPath));
 
 // Error for everything else
-app.use((req, res) => {
+appx.use((req, res) => {
   res.status(404); 
   res.sendFile(join(publicPath, "404.html"));
 });
@@ -30,7 +30,7 @@ server.on("request", (req, res) => {
   if (bare.shouldRoute(req)) {
     bare.routeRequest(req, res);
   } else {
-    app(req, res);
+    appx(req, res);
   }
 });
 
