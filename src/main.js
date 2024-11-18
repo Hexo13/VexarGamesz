@@ -8,7 +8,7 @@ import { createServer } from "node:http";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { join } from "node:path";
 import { hostname } from "node:os";
-import { fileURLToPath } from "node;url";
+import { fileURLToPath } from "node:url";
 
 const publicPath = fileURLToPath(new URL("./public/", import.meta.url));
 
